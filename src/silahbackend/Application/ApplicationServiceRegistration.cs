@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
 using Application.Services.UsersService;
@@ -20,6 +20,13 @@ using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
 using NArchitecture.Core.Security.JWT;
+using Application.Services.Categories;
+using Application.Services.Provinces;
+using Application.Services.Districts;
+using Application.Services.Brands;
+using Application.Services.Models;
+using Application.Services.ProductTypes;
+using Application.Services.ProductListings;
 
 namespace Application;
 
@@ -61,6 +68,19 @@ public static class ApplicationServiceRegistration
 
         services.AddSecurityServices<Guid, int, Guid>(tokenOptions);
 
+        services.AddScoped<ICategoryService, CategoryManager>();
+        services.AddScoped<IProvinceService, ProvinceManager>();
+        services.AddScoped<IDistrictService, DistrictManager>();
+        services.AddScoped<IBrandService, BrandManager>();
+        services.AddScoped<IModelService, ModelManager>();
+        services.AddScoped<IProductTypeService, ProductTypeManager>();
+        services.AddScoped<IProductListingService, ProductListingManager>();
+        services.AddScoped<IModelService, ModelManager>();
+        services.AddScoped<IModelService, ModelManager>();
+        services.AddScoped<IModelService, ModelManager>();
+        services.AddScoped<IBrandService, BrandManager>();
+        services.AddScoped<IBrandService, BrandManager>();
+        services.AddScoped<IModelService, ModelManager>();
         return services;
     }
 

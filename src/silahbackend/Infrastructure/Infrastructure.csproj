@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Amazon.S3" Version="0.33.0" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.310.3" />
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
   </ItemGroup>
   <ItemGroup>
