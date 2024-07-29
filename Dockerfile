@@ -7,7 +7,7 @@ EXPOSE 8081
 # Build aşaması için Microsoft'un resmi .NET SDK imajını kullanıyoruz
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["src/silahbackend/WebAPI/WebAPI.csproj", "src/silahbacpkend/WebAPI/"]
+COPY ["src/silahbackend/WebAPI/WebAPI.csproj", "src/silahbackend/WebAPI/"]
 COPY ["src/silahbackend/Persistence/Persistence.csproj", "src/silahbackend/Persistence/"]
 COPY ["src/silahbackend/Infrastructure/Infrastructure.csproj", "src/silahbackend/Infrastructure/"]
 COPY ["src/silahbackend/Domain/Domain.csproj", "src/silahbackend/Domain/"]

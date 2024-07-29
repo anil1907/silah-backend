@@ -1,19 +1,6 @@
 version: '3.8'
 
 services:
-  webapi:
-    image: silahbackend
-    build:
-      context: .
-      dockerfile: src/silahbackend/WebAPI/Dockerfile
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=postgres;Username=postgres;Password=1907
-
   db:
     image: postgres:13
     environment:
@@ -24,6 +11,30 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+
+  webapi:
+    image: silahbackend
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=postgres;Username=postgres;Password=1907
+    command: >
+      bash -c "dotnet ef database update --project src/silahbackend/Persistence/Persistence.csproj && dotnet WebAPI.dll"
+    networks:
+      - backend_network
 
 volumes:
   postgres_data:
+
+networks:
+  backend_network:
+    driver: bridge
