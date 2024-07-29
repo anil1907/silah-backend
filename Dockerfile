@@ -1,10 +1,10 @@
-# Base image olarak Microsoft'un resmi .NET SDK imajýný kullanýyoruz
+# Base image olarak Microsoft'un resmi .NET SDK imajÄ±nÄ± kullanÄ±yoruz
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-# Build aþamasý için Microsoft'un resmi .NET SDK imajýný kullanýyoruz
+# Build aÅŸamasÄ± iÃ§in Microsoft'un resmi .NET SDK imajÄ±nÄ± kullanÄ±yoruz
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["src/silahbackend/WebAPI/WebAPI.csproj", "src/silahbacpkend/WebAPI/"]
@@ -20,7 +20,7 @@ RUN dotnet build "WebAPI.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "WebAPI.csproj" -c Release -o /app/publish
 
-# Final imajýný oluþturuyoruz
+# Final imajÄ±nÄ± oluÅŸturuyoruz
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
